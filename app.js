@@ -11,6 +11,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const { Console } = require("console");
 
+const employees = []
+
 function init() {
     inquirer
         .prompt([
@@ -67,7 +69,8 @@ function managerPrompt() {
                 ])
                 .then(({ confirm }) => {
                     if (confirm) {
-                        console.log(manager)
+                        employees.push(manager)
+                        console.log(employees)
                         home()
                     } else {
                         managerPrompt()
@@ -100,6 +103,7 @@ function home() {
                     break;
 
                 default:
+                    console.log('*'.repeat(50) + '\n')
                     break;
             }
         })
@@ -168,7 +172,8 @@ function engineerPrompt() {
                 ])
                 .then(({ confirm }) => {
                     if (confirm) {
-                        console.log(engineer)
+                        employees.push(engineer)
+                        console.log(employees)
                         home()
                     } else {
                         employeeRole()
@@ -215,7 +220,8 @@ function internPrompt() {
                 ])
                 .then(({ confirm }) => {
                     if (confirm) {
-                        console.log(intern)
+                        employees.push(intern)
+                        console.log(employees)
                         home()
                     } else {
                         employeeRole()
@@ -226,7 +232,7 @@ function internPrompt() {
 
 function createTeam() {
     console.log('\n' + '*'.repeat(10) + ' CREATING TEAM PAGE ' + '*'.repeat(40))
-    console.log('team page function here')
+    render()
     console.log('*'.repeat(50) + '\n')
     home()
 }
@@ -234,8 +240,6 @@ function createTeam() {
 init()
 
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
