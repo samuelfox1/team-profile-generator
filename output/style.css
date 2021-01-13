@@ -1,0 +1,32 @@
+body {
+    background-color: aquamarine;
+    margin: 0 auto;
+    /* width:95%; */
+}
+
+.team-area {
+    display: flex;
+    /* justify-content: space-around; */
+    max-width: 99%;
+}
+
+.employee-card {
+    /* width: 60rem; */
+    text-align: center;
+}
+
+.list-group {
+    border: solid grey 1px;
+    border-radius: 1rem 1rem;
+}
+
+.card {
+    background-color: rgba(126, 250, 209, 0.1) !important;
+}
+
+
+@media screen and (max-width: 992px) {
+    .team-area {
+        display: inline;
+    }
+}
