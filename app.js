@@ -10,62 +10,213 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-function promptUser() {
-
-    function employee() {
-        inquirer.prompt([
+function init() {
+    inquirer
+        .prompt([
             {
                 type: 'list',
-                message: 'What role are you?',
-                name: 'role',
-                choices: ['manager', 'engineer', 'intern', 'quit']
+                message: '\n***** WELCOME TO TEAM-PAGE CREATOR *****\n',
+                choices: ['Start by entering the manager\'s information'],
+                name: 'choice',
+            },
+        ])
+        .then(x => {
+            managerPrompt()
+        })
+
+}
+
+function managerPrompt() {
+
+    console.log('\n' + '*'.repeat(10) + ' MANAGER ' + '*'.repeat(40))
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: 'Name:',
+                name: 'name',
+            },
+            {
+                type: 'input',
+                message: 'I.D #:',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'Email:',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'Office number:',
+                name: 'officeNumber',
+            },
+        ])
+        .then(x => {
+            const manager = new Manager(x.name, x.id, x.email, x.officeNumber)
+            console.log('*'.repeat(50) + '\n')
+
+            inquirer
+                .prompt([
+                    {
+                        type: 'confirm',
+                        message: 'Is this information correct?',
+                        name: 'confirm'
+                    }
+                ])
+                .then(({ confirm }) => {
+                    if (confirm) {
+                        console.log(manager)
+                        home()
+                    } else {
+                        managerPrompt()
+                    }
+                })
+        })
+}
+
+
+function home() {
+    console.log('\n' + '*'.repeat(10) + ' HOME ' + '*'.repeat(40))
+
+    inquirer
+        .prompt([
+            {
+                type: 'list',
+                message: 'What would you like to do next?',
+                choices: ['Add employee', 'Finish & create team page', 'Quit'],
+                name: 'choice',
             }
-        ]).then(function ({ choice }) {
+        ])
+        .then(({ choice }) => {
             switch (choice) {
-                case "manager":
-                    manager();
+                case 'Add employee':
+                    console.log('*'.repeat(50) + '\n')
+                    employeeType();
                     break;
 
-                case "engineer":
-                    engineer();
-                    break;
-
-                case "intern":
-                    intern();
+                case 'Finish & create team page':
+                    console.log('*'.repeat(50) + '\n')
+                    createTeam();
                     break;
 
                 default:
-                    console.log("thanks for playing!")
                     break;
             }
         })
-    }
-
-
-    function manager() {
-        console.log('')
-    }
-
-
-    function engineer() {
-        console.log('')
-
-    }
-
-    function intern() {
-        console.log('')
-
-    }
-
-
-    function createTeam() {
-
-    }
-
-    employee()
 }
 
-promptUser()
+function employeeType() {
+    console.log('\n' + '*'.repeat(10) + ' EMPLOYEE ' + '*'.repeat(40))
+    inquirer
+        .prompt([
+            {
+                type: 'list',
+                message: 'Employee role',
+                name: 'choice',
+                choices: ['engineer', 'intern', 'home']
+            }
+        ])
+        .then(x => {
+            switch (x.choice) {
+                case 'engineer':
+                    engineerPrompt()
+                    break
+                case 'intern':
+                    intern()
+                    break
+                case 'home':
+                    home()
+                    break
+            }
+        })
+}
+
+
+function engineerPrompt() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: 'Enter your name:',
+                name: 'name',
+            },
+            {
+                type: 'input',
+                message: 'Enter your id:',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'Enter your email:',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'Enter your GitHub username:',
+                name: 'github',
+            },
+        ])
+        .then(x => {
+            const engineer = new Engineer(x.name, x.id, x.email, x.github)
+            console.log('*'.repeat(50) + '\n')
+            inquirer
+                .prompt([
+                    {
+                        type: 'confirm',
+                        message: 'Is this information correct?',
+                        name: 'confirm'
+                    }
+                ])
+                .then(({ confirm }) => {
+                    if (confirm) {
+                        console.log(engineer)
+                        home()
+                    } else {
+                        engineer()
+                    }
+                })
+        })
+
+}
+
+function intern(x) {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                message: 'Enter your name:',
+                name: 'name',
+            },
+            {
+                type: 'input',
+                message: 'Enter your id:',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'Enter your email:',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'Enter your :',
+                name: 'school',
+            },
+        ])
+        .then(({ school }) => {
+            const intern = new Intern(x.name, x.id, x.email, school)
+            console.log(intern)
+            home()
+        })
+}
+
+function createTeam() {
+
+}
+
+
+init()
 
 
 // Write code to use inquirer to gather information about the development team members,
