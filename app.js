@@ -70,7 +70,6 @@ function managerPrompt() {
                 .then(({ confirm }) => {
                     if (confirm) {
                         employees.push(manager)
-                        console.log(employees)
                         home()
                     } else {
                         managerPrompt()
@@ -81,6 +80,10 @@ function managerPrompt() {
 
 function home() {
     console.log('\n' + '*'.repeat(10) + ' HOME ' + '*'.repeat(40))
+    console.log(`Saved employees:`)
+    console.log(employees)
+    console.log('*'.repeat(50) + '\n')
+
     inquirer
         .prompt([
             {
@@ -173,7 +176,6 @@ function engineerPrompt() {
                 .then(({ confirm }) => {
                     if (confirm) {
                         employees.push(engineer)
-                        console.log(employees)
                         home()
                     } else {
                         employeeRole()
@@ -209,7 +211,7 @@ function internPrompt() {
         ])
         .then(x => {
             console.log('*'.repeat(50) + '\n')
-            const intern = new Intern(x.name, x.id, x.email, x.github)
+            const intern = new Intern(x.name, x.id, x.email, x.school)
             inquirer
                 .prompt([
                     {
@@ -221,7 +223,6 @@ function internPrompt() {
                 .then(({ confirm }) => {
                     if (confirm) {
                         employees.push(intern)
-                        console.log(employees)
                         home()
                     } else {
                         employeeRole()
@@ -231,8 +232,16 @@ function internPrompt() {
 }
 
 function createTeam() {
+    // console.log(employeeHtml)
     console.log('\n' + '*'.repeat(10) + ' CREATING TEAM PAGE ' + '*'.repeat(40))
-    render()
+    const employeeHtml = render(employees)
+    fs.writeFile('./output/team.html', employeeHtml, (error) => {
+        if (error) {
+            console.log(error)
+        } else {
+            console.log('enjoi!')
+        }
+    })
     console.log('*'.repeat(50) + '\n')
     home()
 }
