@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { Console } = require("console");
 
 function init() {
     inquirer
@@ -53,8 +54,8 @@ function managerPrompt() {
             },
         ])
         .then(x => {
-            const manager = new Manager(x.name, x.id, x.email, x.officeNumber)
             console.log('*'.repeat(50) + '\n')
+            const manager = new Manager(x.name, x.id, x.email, x.officeNumber)
 
             inquirer
                 .prompt([
@@ -75,10 +76,8 @@ function managerPrompt() {
         })
 }
 
-
 function home() {
     console.log('\n' + '*'.repeat(10) + ' HOME ' + '*'.repeat(40))
-
     inquirer
         .prompt([
             {
@@ -92,7 +91,7 @@ function home() {
             switch (choice) {
                 case 'Add employee':
                     console.log('*'.repeat(50) + '\n')
-                    employeeType();
+                    employeeRole();
                     break;
 
                 case 'Finish & create team page':
@@ -106,13 +105,13 @@ function home() {
         })
 }
 
-function employeeType() {
+function employeeRole() {
     console.log('\n' + '*'.repeat(10) + ' EMPLOYEE ' + '*'.repeat(40))
     inquirer
         .prompt([
             {
                 type: 'list',
-                message: 'Employee role',
+                message: 'Select employee role',
                 name: 'choice',
                 choices: ['engineer', 'intern', 'home']
             }
@@ -123,7 +122,7 @@ function employeeType() {
                     engineerPrompt()
                     break
                 case 'intern':
-                    intern()
+                    internPrompt()
                     break
                 case 'home':
                     home()
@@ -132,34 +131,33 @@ function employeeType() {
         })
 }
 
-
 function engineerPrompt() {
     inquirer
         .prompt([
             {
                 type: 'input',
-                message: 'Enter your name:',
+                message: 'Name:',
                 name: 'name',
             },
             {
                 type: 'input',
-                message: 'Enter your id:',
+                message: 'I.D. #:',
                 name: 'id',
             },
             {
                 type: 'input',
-                message: 'Enter your email:',
+                message: 'Email:',
                 name: 'email',
             },
             {
                 type: 'input',
-                message: 'Enter your GitHub username:',
+                message: 'GitHub username:',
                 name: 'github',
             },
         ])
         .then(x => {
-            const engineer = new Engineer(x.name, x.id, x.email, x.github)
             console.log('*'.repeat(50) + '\n')
+            const engineer = new Engineer(x.name, x.id, x.email, x.github)
             inquirer
                 .prompt([
                     {
@@ -173,48 +171,65 @@ function engineerPrompt() {
                         console.log(engineer)
                         home()
                     } else {
-                        engineer()
+                        employeeRole()
                     }
                 })
         })
 
 }
 
-function intern(x) {
+function internPrompt() {
     inquirer
         .prompt([
             {
                 type: 'input',
-                message: 'Enter your name:',
+                message: 'Name:',
                 name: 'name',
             },
             {
                 type: 'input',
-                message: 'Enter your id:',
+                message: 'I.D. #:',
                 name: 'id',
             },
             {
                 type: 'input',
-                message: 'Enter your email:',
+                message: 'Email:',
                 name: 'email',
             },
             {
                 type: 'input',
-                message: 'Enter your :',
+                message: 'School:',
                 name: 'school',
             },
         ])
-        .then(({ school }) => {
-            const intern = new Intern(x.name, x.id, x.email, school)
-            console.log(intern)
-            home()
+        .then(x => {
+            console.log('*'.repeat(50) + '\n')
+            const intern = new Intern(x.name, x.id, x.email, x.github)
+            inquirer
+                .prompt([
+                    {
+                        type: 'confirm',
+                        message: 'Is this information correct?',
+                        name: 'confirm'
+                    }
+                ])
+                .then(({ confirm }) => {
+                    if (confirm) {
+                        console.log(intern)
+                        home()
+                    } else {
+                        employeeRole()
+                    }
+                })
         })
 }
 
 function createTeam() {
-
+    console.log('\n' + '*'.repeat(10) + ' CREATING TEAM PAGE ' + '*'.repeat(40))
+    console.log('team page function here')
+    console.log('*'.repeat(50) + '\n')
+    home()
 }
-
 
 init()
 
