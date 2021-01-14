@@ -3,11 +3,11 @@
 
 >## Description 
 
-* Easily build a professional contact sheet for all of your employees
+* Easily build a professional webpage with color codeded contact cards for each employee or team member.
 * #### Story
-    * AS A: team manager
-    * I WANT: a quality webpage to keep track of team members and basic information about them
-    * SO THAT: I can easily find information when needed
+    * AS A: Manager,
+    * I WANT: a quality webpage to store team member contact information.
+    * SO THAT: I can easily find the information.
 
 <br>
 
@@ -43,21 +43,26 @@
 
 >## Installation
 
-1. Install node.js on your computer.
-2. Download this project folder
+1. Install [node.js](https://nodejs.org/en/) on your computer.
+2. Download [this](https://github.com/samuelfox1/team-profile-generator/archive/main.zip) project folder
 3. Navigate to project folder in Terminal.
-4. Run npm i to install the dependencies.
+4. Run `npm i` to install the dependencies.
 5. Finished.
 
 <br>
 
 >## Usage
 
-1. Run node app.js to launch the application.
+1. Run `node app.js` to launch the application.
 2. Start with entering manager information.
 3. At the home page, select 'Add employee'.
 4. Add employee information, repeat until all employees have been entered.
 5. If you'd like to see which employees have been entered, select 'View added employees'
+6. When all team members have been entered, select 'Finish & create team.html page'.
+7. Your finished page can be found in the folder marked 'output'.
+
+ * #### **Be sure to copy the whole "output" folder!** #### 
+ * It containes multiple files that work together!
 
 <br>
 
@@ -71,7 +76,7 @@
 
 >## Testing
 
-* In terminal, after running npm i to install dependencies, you may run 'npm run test' to review code tests
+* After installation, you may run  `npm run test`  to review code tests used to build this application.
 
 <br>
 
@@ -97,7 +102,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 <br>
 
-The 'assets/images/logo/' are trademarks of their respective companies and are under their terms and license.
+The images found in 'assets/images/logo/' are trademarks of their respective companies and are under their terms and license.
 <br>
 
 2021
