@@ -1,0 +1,55 @@
+body {
+    background-color: rgb(57, 63, 61);
+    text-align:center;
+}
+
+/* icons & "My Team" text */
+i, h1, .jumbotron {
+    margin: 1rem 0 .5rem 0;
+    padding: 0 0;
+    color: rgba(251, 251, 127,.7);
+}
+
+/* text ("Manager", "Engineer", "Intern") */
+h4 {
+    color: rgba(57, 63, 61, .7);
+}
+
+.card {
+    margin: 1rem 1rem;
+    padding: 0 0;
+    border: none;
+    border-radius: .75rem;
+    width: 20rem;
+    color: rgb(43, 47, 46);
+}
+
+
+.manager-card {
+    background: linear-gradient(to bottom, rgba(255, 119, 119,.8) 10%, rgb(57, 63, 61)85%);
+}
+
+.engineer-card {
+    background: linear-gradient(to bottom, rgba(114, 162, 224,.8) 10%, rgb(57, 63, 61)85%);
+}
+
+.intern-card {
+    background: linear-gradient(to bottom, rgba(105, 238, 105,.7) 10%, rgb(57, 63, 61)85%);
+}
+
+
+.list-group, .card-header {
+    border-radius: .75rem .75rem;
+}
+
+/* icon size */
+i {
+    font-size: 2rem;
+}
+
+/* keeps content centered on screens less then 576 'pixels' wide */
+@media screen and (max-width: 576px) {
+    .justify-content-sm-center {
+        justify-content: center;
+    }
+}
