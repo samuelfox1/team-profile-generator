@@ -306,4 +306,5 @@ function createTeam() {
     home()
 }
 
+// start program
 init()
