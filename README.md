@@ -36,7 +36,7 @@
 >## Product
 
 * [Check it out!](https://samuelfox1.github.io/team-profile-generator/) 
-
+* [Demo Video](https://drive.google.com/file/d/1WzvSdJ5hEFK0hBjxLI3c3xGqTGapBHTu/view?usp=sharing)
 ![Screenshot](Assets/images/screenshot.png)
 
 <br>
