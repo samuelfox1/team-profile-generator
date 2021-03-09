@@ -3,7 +3,7 @@
 
 >## Description 
 
-* Easily build a professional webpage with color codeded contact cards for each employee or team member.
+* Build a professional webpage with color codeded contact cards for each employee or team member.
 * #### Story
     * AS A: Manager,
     * I WANT: a quality webpage to store team member contact information.
